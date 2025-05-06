@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sentiment Analysis System Home</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: #f7f9fc;
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .btn {
+            width: 250px;
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            transition: 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .top-bar {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        {% if user.is_authenticated %}
+            Welcome, {{ user.username }} |
+            <a href="/logout/">Logout</a>
+        {% else %}
+            <a href="/login/">Login</a>
+        {% endif %}
+    </div>
+
+    <h2>Please Select an Analysis Mode</h2>
+
+    <div class="button-container">
+        <form action="/text_sentiment" method="get">
+            <button class="btn">Text Sentiment</button>
+        </form>
+        <form action="/visual_sentiment" method="get">
+            <button class="btn">Visual Sentiment</button>
+        </form>
+        <form action="/combined_sentiment" method="get">
+            <button class="btn">Combined Sentiment</button>
+        </form>
+    </div>
+
+</body>
+</html>
